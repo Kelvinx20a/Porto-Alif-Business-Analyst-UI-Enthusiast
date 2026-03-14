@@ -1,0 +1,498 @@
+/* =========================================
+   1. VARIABLES & RESET (MIDNIGHT TECH THEME)
+   ========================================= */
+:root {
+    --clr-bg: #020617;           /* Deep Midnight Navy */
+    --clr-body-bg: #0f172a;      /* Slate 900 */
+    --clr-main-text: #f8fafc;    /* Slate 50 */
+    --clr-sub-text: #94a3b8;     /* Slate 400 */
+    --clr-accent: #38bdf8;       /* Cyan/Sky Blue */
+    --clr-card-bg: rgba(30, 41, 59, 0.4); 
+    --clr-border: rgba(255, 255, 255, 0.08);
+
+    --font-main: 'Inter', sans-serif;
+    --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --nav-height: 65px;
+    --container-width: 1000px; /* Ukuran Compact */
+}
+
+/* --- HILANGKAN SCROLLBAR WEB --- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    scrollbar-width: none; /* Untuk Firefox */
+}
+
+*::-webkit-scrollbar { 
+    display: none; /* Untuk Chrome, Safari, Edge */
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 15px;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--clr-bg);
+    color: var(--clr-main-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+/* =========================================
+   2. NAVBAR (MODERN & VISIBLE)
+   ========================================= */
+.navbar {
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: var(--transition);
+    background-color: rgba(2, 6, 23, 0.85); 
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.navbar.scrolled {
+    height: 55px;
+    background-color: rgba(2, 6, 23, 0.95);
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* --- HAMBURGER STYLING --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 20px;
+    z-index: 2001; /* Pastikan di atas side menu */
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--clr-main-text);
+    margin: 4px 0;
+    transition: var(--transition);
+    border-radius: 3px;
+}
+
+.logo {
+    position: relative;
+    padding: 20px;
+}
+
+.logo a {
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--clr-main-text);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+    transition: var(--transition);
+}
+
+.logo a span { color: var(--clr-accent); }
+
+/* --- NAV LINKS INTERACTIVE --- */
+.nav-links { display: flex; gap: 25px; list-style: none;}
+
+.nav-links a {
+    color: var(--clr-sub-text);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Divider / Line Hover Effect */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--clr-accent);
+    transition: var(--transition);
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px var(--clr-accent);
+}
+
+.nav-links a:hover { color: var(--clr-accent); }
+.nav-links a:hover::after { width: 100%; }
+
+/* =========================================
+   3. HERO SECTION
+   ========================================= */
+.hero-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--nav-height);
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.tagline {
+    color: var(--clr-accent);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, var(--clr-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+    color: var(--clr-sub-text);
+    font-size: 1rem;
+    max-width: 450px;
+    margin-bottom: 35px;
+}
+
+/* --- HERO IMAGE INTERACTIVE --- */
+.hero-image-container {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    padding: 20px;
+}
+
+.hero-img-main {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--clr-border);
+    z-index: 2;
+    transition: var(--transition);
+    animation: float 6s ease-in-out infinite; /* Animasi melayang */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* --- ANIMASI HOVER LINGKARAN PUTUS-PUTUS --- */
+
+/* 1. Kondisi awal (sudah ada di kode kamu, pastikan transisinya ada) */
+.hero-image-container::before {
+    content: '';
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    border: 2px dashed var(--clr-accent);
+    animation: rotate 20s linear infinite;
+    opacity: 0.4;
+    transition: var(--transition); /* Pastikan pakai variabel transisi kamu */
+    pointer-events: none; /* Biar nggak ngehalangin klik ke foto */
+}
+
+/* 2. EFEK SAAT DI-HOVER */
+.hero-image-container:hover::before {
+    opacity: 1; /* Garis jadi terang benderang */
+    width: 380px; /* Lingkaran membesar dikit */
+    height: 380px; /* Lingkaran membesar dikit */
+    border-style: solid; /* BERUBAH dari putus-putus jadi garis nyambung (opsional, tapi keren) */
+    border-width: 1px;
+    box-shadow: 0 0 30px var(--clr-accent); /* Efek neon menyala */
+    animation-duration: 5s; /* Putarannya jadi lebih cepet pas di-hover */
+}
+
+@keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+.hero-image-container:hover .hero-img-main{
+    border-color:   var(--clr-accent);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--clr-accent);
+    color: var(--clr-bg);
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+}
+
+/* =========================================
+   5. SECTIONS COMMON
+   ========================================= */
+section { padding: 80px 0; }
+.section-header { margin-bottom: 50px; }
+.section-title { font-size: 2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
+.section-subtitle { color: var(--clr-sub-text); font-size: 0.9rem; }
+
+.about-section { background-color: var(--clr-body-bg); }
+.about-container { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 50px; align-items: center; }
+.about-img-alt { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; border: 1px solid var(--clr-border); transition: var(--transition); }
+.about-img-alt:hover { border-color: var(--clr-accent); transform: scale(1.02); }
+
+.about-paragraphs p { color: var(--clr-sub-text); margin-bottom: 15px; font-size: 0.95rem; }
+
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.project-card {
+    background: var(--clr-card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--clr-border);
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    border-color: var(--clr-accent);
+    transform: translateY(-10px);
+    background: rgba(30, 41, 59, 0.6);
+}
+
+.project-title { font-size: 1.1rem; margin-bottom: 10px; }
+.project-desc { font-size: 0.85rem; color: var(--clr-sub-text); margin-bottom: 20px; }
+.card-link { color: var(--clr-accent); text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+
+
+/* =========================================
+   CONTACT SECTION (MOBILE OPTIMIZED)
+   ========================================= */
+.contact-section {
+    padding: 100px 0;
+    background-color: var(--clr-bg);
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.contact-info h2 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, var(--clr-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-info p {
+    color: var(--clr-sub-text);
+    font-size: 1.05rem;
+    max-width: 420px;
+}
+
+/* --- CONTACT CARDS --- */
+.contact-links-professional {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-professional-item {
+    background: rgba(30, 41, 59, 0.4);
+    padding: 20px 25px;
+    border-radius: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid var(--clr-border);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Desktop: Geser Kanan */
+@media (min-width: 769px) {
+    .contact-professional-item:hover {
+        transform: translateX(12px);
+        border-color: var(--clr-accent);
+        background: rgba(56, 189, 248, 0.05);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+}
+
+.contact-icon {
+    font-size: 1.4rem;
+    color: var(--clr-accent);
+    width: 50px;
+    height: 50px;
+    background: rgba(56, 189, 248, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.contact-professional-item:hover .contact-icon {
+    background: var(--clr-accent);
+    color: var(--clr-bg);
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.contact-text .label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--clr-sub-text);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
+}
+
+.contact-text .value {
+    color: #fff;
+    font-size: clamp(0.9rem, 4vw, 1.05rem);
+    font-weight: 600;
+    word-break: break-all; /* Penting biar email panjang gak potong di HP */
+}
+
+/* =========================================
+   MOBILE ADJUSTMENTS (768px DOWN)
+   ========================================= */
+@media (max-width: 768px) {
+    
+}
+
+.site-footer { padding: 50px 0; text-align: center; border-top: 1px solid var(--clr-border); }
+.js-reveal { opacity: 0; transform: translateY(25px); }
+.js-reveal.revealed { opacity: 1; transform: translateY(0); transition: 1s cubic-bezier(0.2, 0.6, 0.2, 1); }
+
+/* =========================================
+   11. MEDIA QUERIES (OPTIMIZED)
+   ========================================= */
+
+@media (max-width: 992px) {
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-text { order: 2; display: flex; flex-direction: column; align-items: center; }
+    .hero-image-container { order: 1; justify-content: center; }
+    .about-container { grid-template-columns: 1fr; text-align: center; }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: flex !important;}
+
+    .nav-links {
+        display: flex !important; 
+        position: fixed;
+        right: -90%; 
+        top: 0;
+        width: 65%; /* SIDE MENU 65% WIDTH */
+        height: 100vh;
+        background: rgba(2, 6, 23, 0.98); 
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.6s cubic-bezier(0.85, 0, 0.15, 1); /* Transisi Professional */
+        z-index: 2000;
+        border-left: 1px solid var(--clr-border);
+        box-shadow: -15px 0 40px rgba(0,0,0,0.6);
+        gap: 40px;
+    }
+
+    .nav-links.active { right: 0; }
+
+    /* HAMBURGER TO X ANIMATION */
+    #mobile-menu.is-active .bar:nth-child(2) { opacity: 0; transform: translateX(20px); }
+    #mobile-menu.is-active .bar:nth-child(1) { transform: translateY(11px) rotate(45deg); background-color: var(--clr-accent); }
+    #mobile-menu.is-active .bar:nth-child(3) { transform: translateY(-11px) rotate(-45deg); background-color: var(--clr-accent); }
+
+    .hero-text h1 { font-size: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+
+    .contact-section {
+        padding: 80px 0;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info p {
+        margin: 0 auto;
+    }
+
+    .contact-professional-item {
+        flex-direction: column; /* Icon di atas, teks di bawah */
+        padding: 30px 20px;
+        gap: 15px;
+        text-align: center;
+    }
+
+    /* Efek Hover Mobile: Pop Up (Bukan Geser) */
+    .contact-professional-item:active, 
+    .contact-professional-item:hover {
+        transform: translateY(-8px);
+        border-color: var(--clr-accent);
+        background: rgba(56, 189, 248, 0.08);
+    }
+
+    .contact-icon {
+        margin: 0 auto;
+    }
+    
+    .contact-text .value {
+        font-size: 0.95rem;
+    }
+}
