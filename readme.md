@@ -30,10 +30,10 @@ Dibuat dengan teknologi web fundamental untuk memastikan performa maksimal:
 ---
 
 ## 📸 Tampilan
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](assets/img/home-section.png)
+![alt text](assets/img/about-section.png)
+![alt text](assets/img/project-section.png)
+![alt text](assets/img/contact-footer-section.png)
 ---
 
 ## 📂 Struktur Folder
