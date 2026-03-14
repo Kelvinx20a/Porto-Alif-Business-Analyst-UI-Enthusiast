@@ -425,13 +425,103 @@ section { padding: 80px 0; }
 .section-title { font-size: 2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
 .section-subtitle { color: var(--clr-sub-text); font-size: 0.9rem; }
 
-.about-section { background-color: var(--clr-body-bg); }
-.about-container { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 50px; align-items: center; }
-.about-img-alt { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; border: 1px solid var(--clr-border); transition: var(--transition); }
-.about-img-alt:hover { border-color: var(--clr-accent); transform: scale(1.02); }
 
-.about-paragraphs p { color: var(--clr-sub-text); margin-bottom: 15px; font-size: 0.95rem; }
+/* =========================================
+   ABOUT SECTION OPTIMIZATION
+   ========================================= */
+.about-section {
+    padding: 100px 0;
+    overflow: hidden;
+}
 
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* Jarak antara foto dan teks */
+}
+
+/* Frame Foto */
+.about-image-frame {
+    flex: 1;
+    position: relative;
+}
+
+.about-img-alt {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 24px; /* Sudut lebih lembut biar modern */
+    filter: grayscale(20%) contrast(1.1);
+    transition: var(--transition);
+    border: 1px solid var(--clr-border);
+    box-shadow: 20px 20px 0px -5px rgba(56, 189, 248, 0.1); /* Efek bayangan kotak tech */
+}
+
+.about-img-alt:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+    box-shadow: 10px 10px 0px -5px var(--clr-accent);
+}
+
+/* Card Teks */
+.about-text-card {
+    flex: 1.2;
+}
+
+.about-text-card .section-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.about-paragraphs p {
+    color: var(--clr-sub-text);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+/* --- MOBILE OPTIMIZATION (BREAKPOINT) --- */
+@media (max-width: 992px) {
+    .about-container {
+        flex-direction: column; /* Tumpuk atas-bawah */
+        text-align: center;
+        gap: 40px;
+    }
+
+    .about-text-card .section-title {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .about-image-frame {
+        width: 80%; /* Biar foto nggak menuhin layar banget di tablet */
+        margin: 0 auto;
+    }
+    
+    .about-img-alt {
+        box-shadow: 15px 15px 0px -5px rgba(56, 189, 248, 0.1);
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section {
+        padding: 60px 0;
+    }
+
+    .about-image-frame {
+        width: 100%; /* Foto full di HP */
+    }
+
+    .about-text-card .section-title {
+        font-size: 1.8rem;
+    }
+
+    .about-paragraphs p {
+        font-size: 0.95rem;
+        text-align: justify; /* Biar rapi di layar kecil */
+    }
+}
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .project-card {
     background: var(--clr-card-bg);
