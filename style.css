@@ -97,9 +97,45 @@ body {
     border-radius: 3px;
 }
 
-.logo {
-    position: relative;
-    padding: 20px;
+/* =========================================
+   INTERACTIVE NAVBAR LOGO
+   ========================================= */
+
+
+/* 1. EFEK GLOW (NEON PULSE) SAAT HOVER */
+.nav-logo:hover {
+    color: var(--clr-accent);
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.7),
+                 0 0 20px rgba(56, 189, 248, 0.5),
+                 0 0 30px rgba(56, 189, 248, 0.3);
+    transform: scale(1.05); /* Membesar dikit banget biar kerasa klik */
+}
+
+/* 2. EFEK GARIS BAWAH (UNDERLINE ANIMATION) */
+.logo::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--clr-accent);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--clr-accent);
+}
+
+.logo:hover::after {
+    width: 100%;
+}
+
+/* 3. OPTIONAL: EFEK GLITCH TIPIS (HANYA SEKALI PAS HOVER) */
+@keyframes logoGlitch {
+    0% { text-shadow: 0.5px 0 0 #fff, -0.5px 0 0 var(--clr-accent); }
+    100% { text-shadow: 0 0 0 transparent; }
+}
+
+.logo:hover {
+    animation: logoGlitch 0.3s ease-out;
 }
 
 .logo a {
@@ -266,6 +302,120 @@ body {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
 }
+
+
+.skills-section {
+    padding: 80px 0;
+    background-color: var(--clr-bg);
+}
+
+.skills-block {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 100px;
+}
+
+.skills-block.reverse {
+    flex-direction: row-reverse;
+}
+
+.skills-content {
+    flex: 1;
+}
+
+.skill-tag {
+    color: var(--clr-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.skills-h2 {
+    font-size: 2.8rem;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.skills-h2 span {
+    color: var(--clr-sub-text);
+    font-weight: 300;
+}
+
+.skills-content p {
+    color: var(--clr-sub-text);
+    line-height: 1.6;
+    max-width: 450px;
+}
+
+/* Grid Icons */
+.skills-grid-new {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.skill-card-new {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.5));
+    border: 1px solid var(--clr-border);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: 0.4s;
+}
+
+.skill-card-new i {
+    font-size: 2rem;
+    color: var(--clr-accent);
+}
+
+.skill-card-new span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.skill-card-new:hover {
+    border-color: var(--clr-accent);
+    transform: translateY(-5px);
+    background: rgba(56, 189, 248, 0.05);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+    .skills-block, .skills-block.reverse {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .skills-content p {
+        margin: 0 auto;
+    }
+    
+    .skills-h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-grid-new {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .skill-card-new {
+        padding: 20px;
+    }
+}
+
+
 
 /* =========================================
    5. SECTIONS COMMON
@@ -494,5 +644,8 @@ section { padding: 80px 0; }
     
     .contact-text .value {
         font-size: 0.95rem;
+    }
+    .skills-container {
+        justify-content: center; /* Rata tengah di HP biar cantik */
     }
 }
